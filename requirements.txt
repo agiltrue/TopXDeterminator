@@ -1,0 +1,18 @@
+# Работа с API и данными
+requests
+pandas
+
+# Базовый анализ и визуализация
+numpy
+matplotlib
+seaborn
+
+# NLP и векторизация
+scikit-learn
+sentence-transformers
+
+# Тематическое моделирование (для топ-проблем)
+bertopic
+
+# Для ноутбуков
+jupyter
