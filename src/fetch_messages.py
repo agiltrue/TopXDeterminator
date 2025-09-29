@@ -109,7 +109,8 @@ def filter_workflow_messages(posts):
     for post_id, msg in posts.items():
         text = msg["message"]
         if text.startswith("**Дебетовые") or text.startswith("**Обращение в top-deposit"):
-            extracted.append(parse_message(msg))
+            if not (text.startswith("**Дебетовые карты - WEB") or text.startswith("**Дебетовые карты - Мобильный банк")):
+                extracted.append(parse_message(msg))
     return extracted
 
 
@@ -127,7 +128,7 @@ def save_to_csv(data, filename="data/raw/debit_cards_dataset.csv"):
 
 # === Запуск ===
 if __name__ == "__main__":
-    target_date = "2024-01-01"  # до какой даты тянуть
+    target_date = "2022-01-01"  # от какой даты тянуть
     all_posts = get_all_posts_until(target_date)
     dataset = filter_workflow_messages(all_posts)
     save_to_csv(dataset)
