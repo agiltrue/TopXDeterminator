@@ -87,7 +87,10 @@ def parse_message(msg):
     problem_type = problem_type_match.group(1).strip() if problem_type_match else ""
 
     # Вопрос
-    question_match = re.search(r"\*\*Вопрос.*?\*\*:\s*\n*(.*?)\n\*\*", text, re.DOTALL)
+    question_match = re.search(
+        r"(?s)\*\*(?:Вопрос(?:\s+к\s+[^\*]+)?|Описание проблемы|Ваш вопрос|Опишите проблему)\*\*[:：]?\s*(.+?)(?=\n\*\*[^*]+?\*\*:|\Z)",
+        text
+    )
     question = question_match.group(1).strip() if question_match else text
 
     return {
